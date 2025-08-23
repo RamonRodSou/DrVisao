@@ -24,6 +24,10 @@
     }
 
     @media (min-width: 800px) {
+        .box-button {
+            justify-content: start;
+        }
+
         .button {
             width: 70%;
             font-size: 1.2rem;

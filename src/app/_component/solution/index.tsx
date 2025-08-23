@@ -3,11 +3,11 @@ import "./style.scss"
 
 export default function Solution() {
     return (
-        <Box component="section" className="solution">
+        <Box component="section" className="section">
             <Typography className="title bold">
                 Serviços
             </Typography>
-            <Box className="solutions-type">
+            <Box className="container">
                 <Typography variant="h6" className="options">
                     Exame Ocular
                 </Typography>

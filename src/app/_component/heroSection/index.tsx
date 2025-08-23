@@ -1,8 +1,7 @@
-import { Box, Button, Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import "./style.scss"
 import Image, { StaticImageData } from "next/image"
-import SendButton from "../SendButton";
-import { reverse } from "dns";
+import SendButton from "../sendButton";
 
 interface Props {
     highligh: string
@@ -17,8 +16,8 @@ export default function HeroSection({ highligh, title, description, image, rever
     const isTrue: boolean = reverse ? reverse : false;
 
     return (
-        <Box component="section">
-            <Box component="div" maxWidth="xl" className={`container ${reverse ? "reverse" : ""}`}>
+        <Box component="section" className="section">
+            <Box component="div" maxWidth="xl" className={`box-data ${reverse ? "reverse" : ""}`}>
                 <Box component="div" className="data">
                     <Box className="info">
                         <Typography className="title">

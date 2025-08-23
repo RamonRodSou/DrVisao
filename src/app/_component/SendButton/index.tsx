@@ -3,12 +3,12 @@ import { Box, Button } from "@mui/material"
 import "./style.scss"
 import React from "react";
 
-interface Prop {
+interface Props {
     description?: string;
     show: boolean;
 }
 
-export default function SendButton({ description, show }: Prop) {
+export default function SendButton({ description, show }: Props) {
 
     const descriptionBtn = description ? description : "AGENDAR EXAMES";
 

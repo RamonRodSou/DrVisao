@@ -13,19 +13,11 @@
     }
 
     main {
-        margin-top: 5rem;
         display: flex;
         flex-direction: column;
+    }
 
-        section {
-            display: flex;
-            flex-direction: column;
-            gap: 8rem;
-        }
-
-        @media (min-width: 1024px) {
-            margin-top: 9rem;
-
-        }
+    footer {
+        padding-top: 4rem;
     }
 }

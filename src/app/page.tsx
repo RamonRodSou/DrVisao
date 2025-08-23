@@ -7,7 +7,6 @@ import Solution from './_component/solution';
 import Reviews from './_component/reviews';
 import FooterNav from './_component/footerNav';
 
-
 export default function Home() {
     return (
         <div>
