@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material"
 import "./style.scss"
 import Image, { StaticImageData } from "next/image"
-import SendButton from "../sendButton";
+import ScheduleBtn from "../scheduleBtn";
 
 interface Props {
     highligh: string
@@ -27,7 +27,7 @@ export default function HeroSection({ highligh, title, description, image, rever
                             {description}
                         </Typography>
                     </Box>
-                    <SendButton show={isTrue} />
+                    <ScheduleBtn show={isTrue} />
                 </Box>
                 <Box className="box-img">
                     <Image
