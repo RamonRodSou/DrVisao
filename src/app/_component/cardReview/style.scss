@@ -1,0 +1,24 @@
+:root {
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+
+        .cardMedia {
+            width: 100px;
+        }
+
+        @media(min-width: 800px) {
+            max-width: 40%;
+        }
+
+        @media(min-width: 1024px) {
+            max-width: 30%;
+        }
+
+        @media(min-width: 1424px) {
+            max-width: 25%;
+        }
+    }
+}
