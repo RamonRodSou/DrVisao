@@ -1,0 +1,17 @@
+:root {
+    .logo {
+        width: 150px;
+    }
+
+    @media (min-width: 800px) {
+        .logo {
+            width: 200px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .logo {
+            width: 240px;
+        }
+    }
+}
