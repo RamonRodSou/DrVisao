@@ -1,9 +1,12 @@
-import '@css/main.scss'
+import '@css/index.scss'
 import HeroSection from "./_component/heroSection";
 import doctorImg from '@img/01_doctor.png';
 import exameImg from '@img/02_exame.png';
 import Menu from './_component/menu';
 import Solution from './_component/solution';
+import Reviews from './_component/reviews';
+import FooterNav from './_component/footerNav';
+
 
 export default function Home() {
     return (
@@ -28,9 +31,10 @@ export default function Home() {
                     />
                 </section>
                 <Solution />
+                <Reviews />
             </main>
             <footer>
-
+                <FooterNav />
             </footer>
         </div>
     );
