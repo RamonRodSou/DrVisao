@@ -8,7 +8,7 @@ interface Props {
     show: boolean;
 }
 
-export default function SendButton({ description, show }: Props) {
+export default function ScheduleBtn({ description, show }: Props) {
 
     const descriptionBtn = description ? description : "AGENDAR EXAMES";
 
