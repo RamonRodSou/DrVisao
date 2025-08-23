@@ -1,0 +1,25 @@
+:root {
+    .solution {
+        margin-top: 8rem;
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+
+        .solutions-type {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+        }
+    }
+
+    @media (min-width: 800px) {
+
+        .solutions-type {
+            justify-content: space-around;
+        }
+    }
+
+    @media (min-width: 1024px) {}
+}

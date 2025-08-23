@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Logo from '../logo';
 import './style.scss'
+import { Box } from "@mui/material";
 
 export default function Menu() {
     const [open, setOpen] = useState(false);
@@ -12,7 +13,7 @@ export default function Menu() {
     return (
         <>
             <nav className="menu">
-                <div className="menu-inner">
+                <Box component="section" className="menu-inner">
                     <Logo />
                     <button className={`menu-toggle ${open ? "open" : ""}`} onClick={toggleMenu}>
                         <span></span>
@@ -26,10 +27,10 @@ export default function Menu() {
                         <li><Link href="/servicos">Serviços</Link></li>
                         <li><Link href="/contato">Contato</Link></li>
                     </ul>
-                </div>
+                </Box>
             </nav>
 
-            {open && <div className="menu-overlay" onClick={toggleMenu}></div>}
+            {open && <Box component="span" className="menu-overlay" onClick={toggleMenu}></Box>}
         </>
     );
 }

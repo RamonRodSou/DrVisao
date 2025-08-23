@@ -17,7 +17,7 @@ export default function SendButton({ description, show }: Prop) {
     }
 
     return (
-        <Box height={100} className={`box-button ? ${show ? "show" : ""}`}>
+        <Box component="div" height={100} className={`box-button ? ${show ? "show" : ""}`}>
             <Button
                 variant="contained"
                 className="button"

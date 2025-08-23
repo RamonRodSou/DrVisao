@@ -3,6 +3,7 @@ import HeroSection from "./_component/heroSection";
 import doctorImg from '@img/01_doctor.png';
 import exameImg from '@img/02_exame.png';
 import Menu from './_component/menu';
+import Solution from './_component/solution';
 
 export default function Home() {
     return (
@@ -26,6 +27,7 @@ export default function Home() {
                         reverse={true}
                     />
                 </section>
+                <Solution />
             </main>
             <footer>
 

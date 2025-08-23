@@ -17,12 +17,12 @@ export default function HeroSection({ highligh, title, description, image, rever
     const isTrue: boolean = reverse ? reverse : false;
 
     return (
-        <section>
-            <Box maxWidth="xl" className={`container ${reverse ? "reverse" : ""}`}>
-                <Box className="data">
+        <Box component="section">
+            <Box component="div" maxWidth="xl" className={`container ${reverse ? "reverse" : ""}`}>
+                <Box component="div" className="data">
                     <Box className="info">
                         <Typography className="title">
-                            <span>{highligh}</span>{title}<span>!</span>
+                            <span className="bold">{highligh}</span>{title}<span className="bold">!</span>
                         </Typography>
                         <Typography className="description">
                             {description}
@@ -39,6 +39,6 @@ export default function HeroSection({ highligh, title, description, image, rever
                     />
                 </Box>
             </Box>
-        </section>
+        </Box>
     )
 }
