@@ -7,19 +7,22 @@
 
         .solutions-type {
             display: flex;
+            justify-content: space-around;
             flex-direction: column;
             align-items: center;
             text-align: center;
             gap: 1rem;
+            width: 100%;
         }
-    }
 
-    @media (min-width: 800px) {
+        @media (min-width: 800px) {
 
-        .solutions-type {
-            justify-content: space-around;
+            .solutions-type {
+                justify-content: space-around;
+                flex-direction: row;
+            }
         }
-    }
 
-    @media (min-width: 1024px) {}
+        @media (min-width: 1024px) {}
+    }
 }
