@@ -3,7 +3,7 @@
 import './style.scss';
 import { useState } from 'react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import dayjs, { Dayjs } from 'dayjs';
+import { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { Box, FormControl, TextField, Typography } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -22,10 +22,9 @@ export default function TalkToUs() {
         date: null,
     })
 
-    const handleChange = (field: keyof IForm, value: any) => {
+    const handleChange = <K extends keyof IForm>(field: K, value: IForm[K]) => {
         setForm((prev) => ({ ...prev, [field]: value }));
     };
-
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">
@@ -47,7 +46,7 @@ export default function TalkToUs() {
                         <TextField
                             label="Telefone"
                             value={form?.phone}
-                            onChange={(it) => handleChange('date', it.target.value)}
+                            onChange={(it) => handleChange('phone', it.target.value)}
                             fullWidth
                             required
                         />
