@@ -1,0 +1,30 @@
+:root {
+    .talkToUs {
+        background-color: #fff;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.131);
+        padding: 2rem;
+        gap: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+        margin: 2rem auto;
+
+        .form {
+            width: 80%;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .talkToUs {
+            max-width: 77%;
+
+            .form {
+                width: 60%;
+            }
+        }
+    }
+}
