@@ -2,7 +2,7 @@
 import './style.scss';
 import { FormEvent, useState } from 'react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { Box, TextField, Typography, Button } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
