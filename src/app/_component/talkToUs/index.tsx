@@ -12,7 +12,7 @@ export default function TalkToUs() {
 
     const [form, setForm] = useState<Person>(new Person)
 
-    function handleChange(field: keyof Person, value: any) {
+    function handleChange(field: keyof Person, value: string | Date | null) {
         setForm(prev => {
             const data = { ...prev, [field]: value };
             return Person.fromJson(data);

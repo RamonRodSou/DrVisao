@@ -7,8 +7,6 @@ import { Box } from "@mui/material";
 export default function Menu() {
     const [open, setOpen] = useState(false);
 
-    const mensageLink = process.env.NEXT_PUBLIC_WHATSAPPS_MSG
-
     const toggleMenu = () => setOpen(!open);
 
     return (
