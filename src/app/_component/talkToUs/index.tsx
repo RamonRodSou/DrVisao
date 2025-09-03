@@ -1,30 +1,49 @@
-'use client'
-
+'use client';
 import './style.scss';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
-import { Box, FormControl, TextField, Typography } from '@mui/material';
+import { Box, TextField, Typography, Button } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-
-interface IForm {
-    name: string;
-    phone: string;
-    date: Dayjs | null;
-}
+import { Person } from '@classes/person/Person';
 
 export default function TalkToUs() {
 
-    const [form, setForm] = useState<IForm>({
-        name: '',
-        phone: '',
-        date: null,
-    })
+    const [form, setForm] = useState<Person>(new Person)
 
-    const handleChange = <K extends keyof IForm>(field: K, value: IForm[K]) => {
-        setForm((prev) => ({ ...prev, [field]: value }));
+    function handleChange(field: keyof Person, value: any) {
+        setForm(prev => {
+            const data = { ...prev, [field]: value };
+            return Person.fromJson(data);
+        });
     };
+
+    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        const payload = {
+            firstname: form.firstname,
+            lastname: form.lastname,
+            phone: form.phone,
+            email: form.email,
+            date: form.date ? dayjs(form.date).format("DD/MM/YYYY") : null,
+            timeout: dayjs().format("DD/MM/YYYY HH:mm:ss")
+        };
+
+        try {
+            const res = await fetch('/api/sendForm', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            if (!res.ok) throw new Error('Erro ao enviar formulário');
+        } catch (err) {
+            console.error('Erro ao enviar formulário:', err);
+        }
+
+        setForm(new Person())
+    }
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">
@@ -32,36 +51,59 @@ export default function TalkToUs() {
                 <Typography variant="h6" className="title">
                     <span className="bold">Fale</span> conosco<span className="bold">!</span>
                 </Typography>
-                <FormControl className='form'>
+                <form className='form' onSubmit={handleSubmit}>
                     <Box marginBottom="1rem" component="div">
                         <TextField
-                            label="Seu nome"
-                            value={form?.name}
-                            onChange={(it) => handleChange('name', it.target.value)}
+                            label="Nome"
+                            value={form?.firstname}
+                            onChange={(it) => handleChange('firstname', it.target.value)}
                             fullWidth
                             required
                         />
                     </Box>
                     <Box marginBottom="1rem" component="div">
+                        <TextField
+                            label="Sobrenome"
+                            value={form?.lastname}
+                            onChange={(it) => handleChange('lastname', it.target.value)}
+                            fullWidth
+                            required
+                        />
+                    </Box>
+                    <Box marginBottom="1rem" component="div" className='phoneNdate'>
                         <TextField
                             label="Telefone"
                             value={form?.phone}
                             onChange={(it) => handleChange('phone', it.target.value)}
                             fullWidth
+                            placeholder='3290001111'
                             required
                         />
-                    </Box>
-                    <Box mb={2} component="div">
+
                         <DatePicker
-                            label="Agendamento"
-                            value={form.date}
+                            className='date'
+                            label="Data de nascimento"
+                            value={form.date ? dayjs(form.date) : null}
                             onChange={(it) => {
-                                handleChange("date", it);
+                                handleChange("date", it?.toDate() ?? null);
                             }}
                             format="DD/MM/YYYY"
                         />
                     </Box>
-                </FormControl>
+                    <Box marginBottom="1rem" component="div">
+                        <TextField
+                            label="email"
+                            value={form?.email}
+                            onChange={(it) => handleChange('email', it.target.value)}
+                            fullWidth
+                            required
+                        />
+                    </Box>
+
+                    <Button type="submit" variant="contained" color="primary" fullWidth>
+                        Agendar
+                    </Button>
+                </form>
             </Box>
         </LocalizationProvider>
     )
