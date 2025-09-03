@@ -20,16 +20,16 @@ export default function HeroSection({ highligh, title, description, image, rever
             <Box component="div" maxWidth="xl" className={`box-data ${reverse ? "reverse" : ""}`}>
                 <Box component="div" className="data">
                     <Box className="info">
-                        <Typography className="title">
+                        <Typography className="title" data-aos="fade-up">
                             <span className="bold">{highligh}</span>{title}<span className="bold">!</span>
                         </Typography>
-                        <Typography className="description">
+                        <Typography className="description" data-aos="fade-up" data-aos-duration="1000">
                             {description}
                         </Typography>
                     </Box>
                     <ScheduleBtn show={isTrue} />
                 </Box>
-                <Box className="box-img">
+                <Box className="box-img" data-aos="zoom-in" data-aos-duration="5000" data-aos-delay="500">
                     <Image
                         src={image}
                         width={650}

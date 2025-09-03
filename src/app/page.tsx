@@ -15,7 +15,7 @@ export default function Home() {
                 <Menu />
             </header>
             <main>
-                <section>
+                <section >
                     <HeroSection
                         highligh="Doutor Visão"
                         title=", porque enxergar bem é viver melhor"

@@ -1,15 +1,14 @@
-import { WEBHOOK } from '@utils/string';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
     const payload = await req.json();
 
-    if (!WEBHOOK) {
+    if (!process.env.NEXT_PUBLIC_WEBHOOK) {
         return NextResponse.json({ error: 'WEBHOOK não definido' }, { status: 500 });
     }
 
     try {
-        const response = await fetch(WEBHOOK, {
+        const response = await fetch(process.env.NEXT_PUBLIC_WEBHOOK, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),

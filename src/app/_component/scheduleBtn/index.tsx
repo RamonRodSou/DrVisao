@@ -17,7 +17,7 @@ export default function ScheduleBtn({ description, show }: Props) {
     }
 
     return (
-        <Box component="div" height={100} className={`box-button ? ${show ? "show" : ""}`}>
+        <Box component="div" height={100} className={`box-button ? ${show ? "show" : ""}`} data-aos="fade-up" data-aos-duration="1500">
             <Button
                 variant="contained"
                 className="button"

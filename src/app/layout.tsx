@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@css/reset.scss";
 import "@css/globals.css";
+import AOSProvider from "./provider/AOSProvider";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -28,7 +29,7 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				{children}
+				<AOSProvider>{children}</AOSProvider>
 			</body>
 		</html>
 	);

@@ -46,13 +46,13 @@ export default function TalkToUs() {
     }
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">
-            <Box component="section" className="talkToUs">
-                <Typography variant="h6" className="title">
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br" >
+            <Box component="section" className="talkToUs" id="talkToUs">
+                <Typography variant="h6" className="title" data-aos="fade-up">
                     <span className="bold">Fale</span> conosco<span className="bold">!</span>
                 </Typography>
                 <form className='form' onSubmit={handleSubmit}>
-                    <Box marginBottom="1rem" component="div">
+                    <Box marginBottom="1rem" component="div" data-aos="fade-up" data-aos-duration="1000">
                         <TextField
                             label="Nome"
                             value={form?.firstname}
@@ -61,7 +61,7 @@ export default function TalkToUs() {
                             required
                         />
                     </Box>
-                    <Box marginBottom="1rem" component="div">
+                    <Box marginBottom="1rem" component="div" data-aos="fade-up" data-aos-duration="1000">
                         <TextField
                             label="Sobrenome"
                             value={form?.lastname}
@@ -70,7 +70,7 @@ export default function TalkToUs() {
                             required
                         />
                     </Box>
-                    <Box marginBottom="1rem" component="div" className='phoneNdate'>
+                    <Box marginBottom="1rem" component="div" className='phoneNdate' data-aos="fade-up" data-aos-duration="1000">
                         <TextField
                             label="Telefone"
                             value={form?.phone}
@@ -90,7 +90,7 @@ export default function TalkToUs() {
                             format="DD/MM/YYYY"
                         />
                     </Box>
-                    <Box marginBottom="1rem" component="div">
+                    <Box marginBottom="1rem" component="div" data-aos="fade-up" data-aos-duration="1000">
                         <TextField
                             label="email"
                             value={form?.email}
@@ -100,7 +100,7 @@ export default function TalkToUs() {
                         />
                     </Box>
 
-                    <Button type="submit" variant="contained" color="primary" fullWidth>
+                    <Button type="submit" variant="contained" color="primary" fullWidth data-aos="fade-up" data-aos-duration="1000">
                         Agendar
                     </Button>
                 </form>
