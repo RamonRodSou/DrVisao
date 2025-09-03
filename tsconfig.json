@@ -31,6 +31,9 @@
       ],
       "@css/*": [
         "./src/asserts/css/*"
+      ],
+      "@classes/*": [
+        "./libs/domain/*"
       ]
     }
   },
