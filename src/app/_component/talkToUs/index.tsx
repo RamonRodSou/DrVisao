@@ -40,8 +40,12 @@ export default function TalkToUs() {
         const error = validateForm(form);
         return error;
     }
-
-    async function sendForm(form: Person, setForm: Function, setErrors: Function, setSuccessMsg: Function) {
+    async function sendForm(
+        form: Person,
+        setForm: (form: Person) => void,
+        setErrors: (errors: Errors) => void,
+        setSuccessMsg: (msg: string | null) => void
+    ) {
         try {
             await SendFormToN8n(form);
             setForm(new Person());
