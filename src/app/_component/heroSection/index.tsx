@@ -16,7 +16,7 @@ export default function HeroSection({ highligh, title, description, image, rever
     const isTrue: boolean = reverse ? reverse : false;
 
     return (
-        <Box component="section" className="section">
+        <Box component="section" className="section" id="home">
             <Box component="div" maxWidth="xl" className={`box-data ${reverse ? "reverse" : ""}`}>
                 <Box component="div" className="data">
                     <Box className="info">

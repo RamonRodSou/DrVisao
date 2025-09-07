@@ -9,7 +9,7 @@ export class Person {
         public lastname: string = EMPTY,
         public email: string = EMPTY,
         public phone: string = EMPTY,
-        public date: Date | null = null,
+        public date: Date = new Date(),
         public createdAt: string = new Date().toISOString(),
     ) { }
 
@@ -32,7 +32,7 @@ export class Person {
             lastname: this.lastname,
             email: this.email,
             phone: this.phone,
-            date: this.date ? this.date.toISOString() : null,
+            date: this.date.toISOString(),
             createdAt: this.createdAt
         };
     }
