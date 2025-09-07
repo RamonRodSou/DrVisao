@@ -13,7 +13,10 @@ export default function ScheduleBtn({ description, show }: Props) {
     const descriptionBtn = description ? description : "AGENDAR EXAMES";
 
     function handleSchedule() {
-        alert("Agendou")
+        const target = document.getElementById("talkToUs");
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+        }
     }
 
     return (

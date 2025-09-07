@@ -1,7 +1,7 @@
+import { Person } from '@classes/person/Person';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(req: NextRequest) {
-    const payload = await req.json();
+export async function SendFormToN8n(entity: any) {
 
     if (!process.env.NEXT_PUBLIC_WEBHOOK) {
         return NextResponse.json({ error: 'WEBHOOK não definido' }, { status: 500 });
@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
         const response = await fetch(process.env.NEXT_PUBLIC_WEBHOOK, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
+            body: JSON.stringify(entity),
         });
 
         const data = await response.text();

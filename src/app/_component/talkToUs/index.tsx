@@ -4,13 +4,19 @@ import { FormEvent, useState } from 'react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
-import { Box, TextField, Typography, Button } from '@mui/material';
+import { Box, TextField, Typography, Button, Alert } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Person } from '@classes/person/Person';
+import { SendFormToN8n } from '@/app/api/sendForm/route';
+import { Errors } from '@utils/IError';
+import { sanitize, validateForm } from '@utils/validate';
 
 export default function TalkToUs() {
 
-    const [form, setForm] = useState<Person>(new Person)
+    const [form, setForm] = useState<Person>(new Person);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [successMsg, setSuccessMsg] = useState<string | null>(null)
+    const [errors, setErrors] = useState<Errors>({});
 
     function handleChange(field: keyof Person, value: string | Date | null) {
         setForm(prev => {
@@ -19,30 +25,51 @@ export default function TalkToUs() {
         });
     };
 
+    function formatForm(form: Person): Person {
+        return Person.fromJson({
+            ...form,
+            firstname: sanitize(String(form.firstname ?? '')),
+            lastname: sanitize(String(form.lastname ?? '')),
+            phone: String(form.phone ?? '').replace(/\D/g, ''),
+            email: sanitize(String(form.email ?? '')),
+            date: form.date ? dayjs(form.date).toISOString() : null,
+        });
+    }
+
+    function validateFormData(form: Person): Errors {
+        const error = validateForm(form);
+        return error;
+    }
+
+    async function sendForm(form: Person, setForm: Function, setErrors: Function, setSuccessMsg: Function) {
+        try {
+            await SendFormToN8n(form);
+            setForm(new Person());
+            setErrors({});
+            setSuccessMsg('Formulário enviado com sucesso, em breve entraremos em contato!');
+            setTimeout(() => setSuccessMsg(null), 5000);
+        } catch (err) {
+            console.error(err);
+            setSuccessMsg('Desculpa, infelizmente ocorreu um erro. Tente novamente.');
+        }
+    }
+
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const payload = {
-            firstname: form.firstname,
-            lastname: form.lastname,
-            phone: form.phone,
-            email: form.email,
-            date: form.date ? dayjs(form.date).format("DD/MM/YYYY") : null,
-            timeout: dayjs().format("DD/MM/YYYY HH:mm:ss")
-        };
+        setLoading(true);
+        setSuccessMsg(null);
 
-        try {
-            const res = await fetch('/api/sendForm', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            });
+        const formattedForm = formatForm(form);
+        const errors = validateFormData(formattedForm);
 
-            if (!res.ok) throw new Error('Erro ao enviar formulário');
-        } catch (err) {
-            console.error('Erro ao enviar formulário:', err);
+        if (Object.keys(errors).length > 0) {
+            setErrors(errors);
+            setLoading(false);
+            return;
         }
 
-        setForm(new Person())
+        await sendForm(formattedForm, setForm, setErrors, setSuccessMsg);
+        setLoading(false);
     }
 
     return (
@@ -51,6 +78,13 @@ export default function TalkToUs() {
                 <Typography variant="h6" className="title" data-aos="fade-up">
                     <span className="bold">Fale</span> conosco<span className="bold">!</span>
                 </Typography>
+
+                {successMsg && (
+                    <Alert severity={successMsg.startsWith("F") ? "success" : "error"}>
+                        {successMsg}
+                    </Alert>
+                )}
+
                 <form className='form' onSubmit={handleSubmit}>
                     <Box marginBottom="1rem" component="div" data-aos="fade-up" data-aos-duration="1000">
                         <TextField
@@ -59,6 +93,8 @@ export default function TalkToUs() {
                             onChange={(it) => handleChange('firstname', it.target.value)}
                             fullWidth
                             required
+                            error={!!errors.firstname}
+                            helperText={errors.firstname}
                         />
                     </Box>
                     <Box marginBottom="1rem" component="div" data-aos="fade-up" data-aos-duration="1000">
@@ -68,6 +104,8 @@ export default function TalkToUs() {
                             onChange={(it) => handleChange('lastname', it.target.value)}
                             fullWidth
                             required
+                            error={!!errors.lastname}
+                            helperText={errors.lastname}
                         />
                     </Box>
                     <Box marginBottom="1rem" component="div" className='phoneNdate' data-aos="fade-up" data-aos-duration="1000">
@@ -78,16 +116,25 @@ export default function TalkToUs() {
                             fullWidth
                             placeholder='3290001111'
                             required
+                            error={!!errors.phone}
+                            helperText={errors.phone}
                         />
 
                         <DatePicker
                             className='date'
-                            label="Data de nascimento"
+                            label="Agendamento"
                             value={form.date ? dayjs(form.date) : null}
                             onChange={(it) => {
                                 handleChange("date", it?.toDate() ?? null);
                             }}
                             format="DD/MM/YYYY"
+                            slotProps={{
+                                textField: {
+                                    required: true,
+                                    error: !!errors.date,
+                                    helperText: errors.date,
+                                },
+                            }}
                         />
                     </Box>
                     <Box marginBottom="1rem" component="div" data-aos="fade-up" data-aos-duration="1000">
@@ -97,13 +144,16 @@ export default function TalkToUs() {
                             onChange={(it) => handleChange('email', it.target.value)}
                             fullWidth
                             required
+                            error={!!errors.email}
+                            helperText={errors.email}
                         />
                     </Box>
 
                     <Button type="submit" variant="contained" color="primary" fullWidth data-aos="fade-up" data-aos-duration="1000">
-                        Agendar
+                        {loading ? "Enviando..." : "Agendar"}
                     </Button>
                 </form>
+
             </Box>
         </LocalizationProvider>
     )
