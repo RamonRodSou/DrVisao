@@ -7,7 +7,7 @@ import 'dayjs/locale/pt-br';
 import { Box, TextField, Typography, Button, Alert } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Person } from '@classes/person/Person';
-import { SendFormToN8n } from '@/app/api/sendForm/route';
+import { SendFormToN8n } from '@/app/api/sendForm/N8NConection';
 import { Errors } from '@utils/IError';
 import { sanitize, validateForm } from '@utils/validate';
 

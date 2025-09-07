@@ -1,7 +1,7 @@
 import { Person } from '@classes/person/Person';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function SendFormToN8n(entity: any) {
+export async function SendFormToN8n(entity: Person) {
 
     if (!process.env.NEXT_PUBLIC_WEBHOOK) {
         return NextResponse.json({ error: 'WEBHOOK não definido' }, { status: 500 });
