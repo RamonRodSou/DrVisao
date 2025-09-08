@@ -4,18 +4,12 @@
     --background: #f4f9fd;
     --foreground: #ffffff;
     --secundary: #ffffff;
-}
+    --background: #f4f9fd;
+    --foreground: #ffffff;
+    --primary: #194972;
+    --secundary: #040303;
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #f4f9fd;
-        --foreground: #ffffff;
-        --primary: #194972;
-        --secundary: #040303;
-
-        --primary-hover: #19487272;
-
-    }
+    --primary-hover: #19487272;
 }
 
 html {
