@@ -43,11 +43,6 @@ export function validateForm(entity: Person): Errors {
         error.phone = 'Telefone deve conter apenas números (8 a 11 dígitos).';
     }
 
-    const email = String(entity.email ?? '').trim();
-    if (!emailRegex.test(email)) {
-        error.email = 'Email inválido.';
-    }
-
     if (!entity.date) {
         error.date = 'Data obrigatória.';
     } else {

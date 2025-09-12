@@ -31,7 +31,6 @@ export default function TalkToUs() {
             firstname: sanitize(String(form.firstname ?? '')),
             lastname: sanitize(String(form.lastname ?? '')),
             phone: String(form.phone ?? '').replace(/\D/g, ''),
-            email: sanitize(String(form.email ?? '')),
             date: form.date ? dayjs(form.date).toISOString() : null,
         });
     }
@@ -147,9 +146,6 @@ export default function TalkToUs() {
                             value={form?.email}
                             onChange={(it) => handleChange('email', it.target.value)}
                             fullWidth
-                            required
-                            error={!!errors.email}
-                            helperText={errors.email}
                         />
                     </Box>
 
