@@ -13,7 +13,7 @@ export default function ScheduleBtn({ description, show }: Props) {
     const descriptionBtn = description ? description : "AGENDAR EXAMES";
 
     function handleSchedule() {
-        const externalUrl = process.env.NEXT_PUBLIC_WHATSAPPS_MSG;
+        const externalUrl = "https://api.whatsapp.com/send/?phone=5515997227203&text=Ol%C3%A1+tudo+bem%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+exame+de+vista.&type=phone_number&app_absent=0";
 
         if (externalUrl) {
             window.location.href = externalUrl;
