@@ -6,7 +6,6 @@ import Menu from './_component/menu';
 import Solution from './_component/solution';
 import Reviews from './_component/reviews';
 import FooterNav from './_component/footerNav';
-import TalkToUs from './_component/talkToUs';
 
 export default function Home() {
     return (
