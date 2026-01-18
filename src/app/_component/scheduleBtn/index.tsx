@@ -9,13 +9,16 @@ interface Props {
 }
 
 export default function ScheduleBtn({ description, show }: Props) {
-
+    
     const descriptionBtn = description ? description : "AGENDAR EXAMES";
 
     function handleSchedule() {
-        const target = document.getElementById("talkToUs");
-        if (target) {
-            target.scrollIntoView({ behavior: "smooth" });
+        const externalUrl = process.env.NEXT_PUBLIC_WHATSAPPS_MSG;
+
+        if (externalUrl) {
+            window.location.href = externalUrl;
+        } else {
+            console.warn("URL do WhatsApp não configurada no .env");
         }
     }
 

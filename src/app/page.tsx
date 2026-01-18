@@ -19,7 +19,8 @@ export default function Home() {
                     <HeroSection
                         highligh="Doutor Visão"
                         title=", porque enxergar bem é viver melhor"
-                        description="Exames de vista acessíveis, atendimento rápido e sem filas de espera. Cuidados completos para sua visão com conforto e segurança."
+                        highlighDescription='Exames de vista gratuito'
+                        description=", atendimento rápido e sem filas de espera. Cuidados completos para sua visão com conforto e segurança."
                         image={doctorImg}
                     />
                     <HeroSection
@@ -32,7 +33,7 @@ export default function Home() {
                 </section>
                 <Solution />
                 <Reviews />
-                <TalkToUs />
+                {/* <TalkToUs /> */}
             </main>
             <footer>
                 <FooterNav />

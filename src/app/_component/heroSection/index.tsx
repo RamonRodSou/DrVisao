@@ -4,14 +4,15 @@ import Image, { StaticImageData } from "next/image"
 import ScheduleBtn from "../scheduleBtn";
 
 interface Props {
-    highligh: string
+    highligh: string;
+    highlighDescription?: string;
     title: string;
     description: string;
     image: StaticImageData;
     reverse?: boolean;
 }
 
-export default function HeroSection({ highligh, title, description, image, reverse }: Props) {
+export default function HeroSection({ highligh, highlighDescription,title, description, image, reverse }: Props) {
 
     const isTrue: boolean = reverse ? reverse : false;
 
@@ -24,7 +25,7 @@ export default function HeroSection({ highligh, title, description, image, rever
                             <span className="bold">{highligh}</span>{title}<span className="bold">!</span>
                         </Typography>
                         <Typography className="description" data-aos="fade-up" data-aos-duration="1000">
-                            {description}
+                            <span className="bold text-[1.3rem]">{highlighDescription}</span>{description}
                         </Typography>
                     </Box>
                     <ScheduleBtn show={isTrue} />
