@@ -32,7 +32,6 @@ export default function Home() {
                 </section>
                 <Solution />
                 <Reviews />
-                {/* <TalkToUs /> */}
             </main>
             <footer>
                 <FooterNav />
