@@ -26,9 +26,9 @@ export default function Menu() {
                         <li>
                             <a href="#solution" onClick={() => setOpen(false)}>Serviços</a>
                         </li>
-                        <li>
+                        {/* <li>
                             <a href="#talkToUs" onClick={() => setOpen(false)}>Agendamento</a>
-                        </li>
+                        </li> */}
                         <li>
                             <a
                                 href={process.env.NEXT_PUBLIC_WHATSAPPS_MSG}
@@ -36,7 +36,7 @@ export default function Menu() {
                                 rel="noopener noreferrer"
                                 onClick={() => setOpen(false)}
                             >
-                                Contato
+                                Agendamento
                             </a>
                         </li>
                     </ul>
